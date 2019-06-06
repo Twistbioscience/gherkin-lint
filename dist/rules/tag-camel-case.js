@@ -27,9 +27,9 @@ function verifyTagPattern(node, errors) {
   var failedTagNames = [];
   var uniqueTagNames = [];
   (node.tags || []).forEach(function (tag) {
-    if (tag.name.match(/[a-z]+[A-Z0-9][a-z0-9]+[A-Za-z0-9]*/)) {
+    if (!tag.name.match(/[a-z]+[A-Z0-9][a-z0-9]+[A-Za-z0-9]*/)) {
       errors.push({
-        message: 'camelcase tags are not allowed: ' + tag.name,
+        message: 'tags should be in camelCase: ' + tag.name,
         rule: rule,
         line: tag.location.line
       });
