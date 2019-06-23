@@ -12,7 +12,8 @@ function noDuplicateScenarioNames(feature, file, configuration) {
   }
   if (feature && feature.children) {
     feature.children.forEach(function(scenario) {
-      if (scenario.name) {
+      // Backgrounds can have duplicate 'names'
+      if (scenario.type === 'Scenario' && scenario.name) {
         if (scenario.name in scenarios) {
           var dupes = getFileLinePairsAsStr(scenarios[scenario.name].locations);
           scenarios[scenario.name].locations.push({file: file.name, line: scenario.location.line});
